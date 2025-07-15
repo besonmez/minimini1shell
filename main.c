@@ -6,7 +6,7 @@
 /*   By: beysonme <beyzasonmez565@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:06:21 by kikiz             #+#    #+#             */
-/*   Updated: 2025/07/15 14:51:32 by beysonme         ###   ########.fr       */
+/*   Updated: 2025/07/15 14:55:34 by beysonme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 #include <unistd.h>
 
 int main() {
-char *input;
-    while (1)
-	{
-		input = readline(PROMPT);
-		if (!input)
-			break;
-		add_history(input);
-		free(input);
-	}
-	return (0);
+
 }
 
