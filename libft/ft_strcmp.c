@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beysonme <beyzasonmez565@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 16:06:21 by kikiz             #+#    #+#             */
-/*   Updated: 2025/07/15 17:18:24 by beysonme         ###   ########.fr       */
+/*   Created: 2025/07/23 17:19:19 by beysonme          #+#    #+#             */
+/*   Updated: 2025/07/23 17:19:37 by beysonme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define PROMPT "\001\033[38;5;205m\002minimini1shell$ \001\033[0m\002"
-#include <stdio.h>
-#include <termios.h>
-#include <unistd.h>
-
-int main() {
-
+int ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
-
