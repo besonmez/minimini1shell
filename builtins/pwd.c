@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kikiz <kikiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
+/*   By: kikiz <ikizkamile26@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 18:39:31 by kikiz             #+#    #+#             */
-/*   Updated: 2025/07/29 15:45:01 by kikiz            ###   ########.fr       */
+/*   Created: 2025/07/23 19:19:41 by beysonme          #+#    #+#             */
+/*   Updated: 2025/08/21 00:53:57 by kikiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	builtin_pwd(t_command *cmd)
 {
-	size_t	i;
+	char	*cwd;
 
-	i = 0;
-	if (!dstsize)
-		return (ft_strlen(src));
-	while (src [i] && i < (dstsize - 1))
+	(void)cmd;
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
 	{
-		dst[i] = src[i];
-		i++;
+		perror("pwd");
+		set_exit_code(1);
+		return (1);
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	ft_putendl_fd(cwd, 1);
+	free(cwd);
+	set_exit_code(0);
+	return (0);
 }

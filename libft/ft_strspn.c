@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strspn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kikiz <kikiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 15:58:21 by kikiz             #+#    #+#             */
-/*   Updated: 2025/07/11 15:58:34 by kikiz            ###   ########.fr       */
+/*   Created: 2025/07/26 13:08:49 by kikiz             #+#    #+#             */
+/*   Updated: 2025/07/26 13:14:51 by kikiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*all_args(int argc, char **argv)
-{
-	int		i;
-	char	*result;
-	char	*tmp;
-	char	*tmp2;
+#include "libft.h"
 
-	i = 1;
-	result = ft_strdup("");
-	while (i < argc)
+size_t	ft_strspn(const char *str1, const char *str2)
+{
+	size_t		i;
+	const char	*p;
+	int			found;
+
+	i = 0;
+	while (str1[i])
 	{
-		tmp2 = result;
-		tmp = ft_strjoin(argv[i], " ");
-		result = ft_strjoin(tmp2, tmp);
-		free(tmp);
-		free(tmp2);
+		p = str2;
+		found = 0;
+		while (*p)
+		{
+			if (str1[i] == *p)
+			{
+				found = 1;
+				break ;
+			}
+			p++;
+		}
+		if (!found)
+			break ;
 		i++;
 	}
-	return (result);
+	return (i);
 }

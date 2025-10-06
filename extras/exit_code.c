@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   exit_code.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beysonme <beysonme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/12 18:20:29 by kikiz             #+#    #+#             */
-/*   Updated: 2025/08/25 02:54:45 by beysonme         ###   ########.fr       */
+/*   Created: 2025/08/17 19:43:46 by beysonme          #+#    #+#             */
+/*   Updated: 2025/08/24 06:15:21 by beysonme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strdup(const char *s1)
+static int	current_exit_code(int *exit_code)
 {
-	int		i;
-	int		j;
-	char	*ptr;
+	static int	current;
 
-	i = 0;
-	j = 0;
-	if (!s1)
-		return (NULL);
-	while (s1[i] != '\0')
-	{
-		i++;
-	}
-	ptr = malloc(sizeof(char) * (i + 1));
-	if (!ptr)
-		return (0);
-	while (s1[j] != '\0')
-	{
-		ptr[j] = s1[j];
-		j++;
-	}
-	ptr[j] = '\0';
-	return (ptr);
+	if (!exit_code)
+		return (current);
+	current = *exit_code;
+	return (current);
+}
+
+void	set_exit_code(int status)
+{
+	current_exit_code(&status);
+}
+
+int	get_exit_code(void)
+{
+	return (current_exit_code(NULL));
 }
